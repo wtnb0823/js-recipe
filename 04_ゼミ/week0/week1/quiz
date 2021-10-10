@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>WebExpertコーステンプレート</title>
+  </head>
+  <body>
+    <div id="element">出身地はどこでしょう？</div>
+    <button id="buttonK">京都府</button>
+    <button id="buttonM">宮城県</button>
+    <button id="buttonH">北海道</button>
+    <button id="buttonO">沖縄県</button>
+    <button id="buttonS">埼玉県</button>
+    <div id="answer"></div>
+    <script>
+      const answer = document.getElementById("answer");
+      const buttonK = document.getElementById("buttonK");
+      const buttonM = document.getElementById("buttonM");
+      const buttonH = document.getElementById("buttonH");
+      const buttonO = document.getElementById("buttonO");
+      const buttonS = document.getElementById("buttonS");
+
+      buttonH.onclick = function () {
+        answer.textContent = "正解！イワシの出身地です。";
+      };
+      buttonM.onclick = function () {
+        answer.textContent = "正解です！ワタナベは宮城出身です";
+      };
+      const quizMiss = function () {
+        answer.textContent = "残念！はずれです";
+      };
+
+      buttonK.onclick = quizMiss;
+      buttonO.onclick = quizMiss;
+      buttonS.onclick = quizMiss;
+    </script>
+  </body>
+</html>
