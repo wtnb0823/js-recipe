@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue自動販売機</title>
+  </head>
+  <body>
+    <section id="app1">
+        <h1>入力画面</h1>
+        <input type="number" v-model="amount">
+        <div>入力額：{{ amount }}円</div>
+        <button v-on:click="nyukin" v-bind:disabled="0 >= amount">入金</button>
+        <button v-on:click="syukkin" v-bind:disabled="amount > total || 0 >= amount">出金</button>
+        <h1>口座残高</h1>
+        <div>残高：{{ total }}円</div>
+        <h1>取引記録</h1>
+        <div v-for="record in records">
+            <div>日付：{{ record.date }}</div>
+            <div>操作：{{ record.type }}</div>
+            <div>金額：{{ record.money }}円</div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app1",
+        data: {
+            amount: null,
+            total: 0,
+            records: []
+        },
+        methods: {
+            nyukin: function() {
+                this.total += Number(this.amount);
+                this.records.push({date: new Date(), type: "入金",money: this.amount});
+                this.amount = null;
+            },
+            syukkin: function() {
+                this.total -= Number(this.amount);
+                this.records.push({date: new Date(), type: "出金",money: this.amount});
+                this.amount = null;
+            }
+        }
+      });
+    </script>
+  </body>
+</html>
